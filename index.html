@@ -3,23 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Find By Genre</title>
+
+    <style>
+        .btn {
+        width: 120px;
+        height: 30px;
+        display: block;
+        margin: 0 auto;
+        border-radius: 30px;
+        font-family: helvetica;
+        text-align: center;
+        text-transform: uppercase;
+        background-color: white;
+        border: 1px solid black;
+        cursor: pointer;
+        }
+        .quote-container {
+        max-width: 700px;
+        min-width: 350px;
+        margin: 30px auto;
+        text-align: center;
+        border: 2px solid #37474F;
+        border-radius: 10px;     
+        transition: all 0.5s ease-in;
+        color: #37474F;
+        font-family: helvetica;
+        }
+        #heading {
+            font-size: 28px;
+        }
+        .quote-display {
+            line-height: 30px;
+            margin: 30px;
+            padding: 20px;
+            border: 1px solid #BDBDBD;        
+            font-style: italic;
+            font-size: 18px;
+        }
+        #quote-btn {
+            margin: 20px;  
+            text-transform: uppercase;
+            background-color: white;
+            border: 1px solid #9E9E9E;
+            padding: 10px 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in;
+        
+        }
+        #hover {
+            background-color: #37474F;
+            color: white;
+            }
+  }  
+}
+.night-mode {
+  background-color: #37474F;
+  color: white;   
+}
+    </style>
 </head>
 <body>
-        <h2>Music Genre:</h2>
-        <h4>RNB</h4>
-        <h4>POP ROCK</h4>
-        <h4>HIPHOP</h4>
-        <h4>JAZZ</h4>
-    <form action="input.php" method="POST">
-         Id:<br>
-        <input type="number" name="id">
-        <br>
-         Genre:<br>
-        <input type="text" name="genre">
-
-        <input type="submit" value="Submit">
-      </form> 
     
+            
+        <button id="night-mode-js" class="btn night-mode" data-text-swap="day-mode" onclick="toggleBtn()">
+        Night-mode
+        </button>
+        
+        <div class="quote-container">
+            <h2 id="heading">Find By Genre</h2>
+            <p id="quote-js" class="quote"></p>
+            <h2>Music Genre:</h2>
+            <h4>1. RNB</h4>
+            <h4>2. POP ROCK</h4>
+            <h4>3. HIPHOP</h4>
+            <h4>4. JAZZ</h4>
+        <form action="input.php" method="POST">
+            Id:<br>
+            <input type="number" name="id">
+            <br>
+            Genre:<br>
+            <input type="text" name="genre">
+
+           
+        </form> 
+        <br>
+            <button id="quote-btn">Find</button>
+        </div>
 </body>
+
+<script>
+
+                var quote = document.getElementById("quote-js");
+                var quoteBtn = document.getElementById("quote-btn");
+                // Nightmode/Daymode feauture
+                $(document).ready(function() {
+                $("#night-mode-js").click(function() {
+                    $(".quote-container, .quote, .btn").toggleClass("night-mode");
+                    if($('#night-mode-js').hasClass('night-mode')){
+                    $('#night-mode-js').html('Night-mode');
+                    } else {
+                    $('#night-mode-js').html('Day-mode');
+                    }
+                });
+                });
+                //Random genre machine
+                var genre = [
+                '"Para sa akin" - Jazz',
+                '"Rock on you" - Rock',
+                '"Top of the world" - Pop',
+                
+                ];
+                quoteBtn.onclick = function randomQuote() {
+                var rand = quotes[Math.floor(Math.random() * quotes.length)];
+                quote.innerHTML = rand;
+                };
+</script>
 </html>
+    
